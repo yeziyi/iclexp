@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">ICleanExpert</string>
+    <string name="main_title">CleanMaster</string>
+    <string name="total_suggestion">Total Garbage <xliff:g id="total_suggestion_size">%s</xliff:g></string>
+    <string name="total_suggestion_small">(Recommended cleanup)</string>
+    <string name="total_clean">Successfully cleaned <xliff:g id="total_clean_size">%s</xliff:g> Garbage</string>
+    <string name="scanning">Scanning:</string>
+    <string name="scanfinish">The scan is complete</string>
+    <string name="titlecache">Cache scan</string>
+    <string name="titleapk">APK scan</string>
+    <string name="titleram">Memory scan</string>
+    <string name="titletrash">Trash File scan</string>
+    <string name="titlebig">Large File scan</string>
+    <string name="stopscan">Stop Scanning</string>
+    <string name="total_find">Found <xliff:g id="total_find_size">%s</xliff:g> garbage can clean up</string>
+    <string name="cleaning">Cleaning up:</string>
+    <string name="cleanfinish">Cleanup completed</string>
+    <string name="cacheclean">Cache Cleanup</string>
+    <string name="cleanresultitem">(Cleaned <xliff:g id="count">%s</xliff:g> Total <xliff:g id="size">%s</xliff:g>)</string>
+    <string name="apkclean">APK Cleanup</string>
+    <string name="ramclean">Memory Cleanup</string>
+    <string name="trashclean">Trash File</string>
+    <string name="bigclean">Large File</string>
+    <string name="onekeyclean">Cleanup</string>
+    <string name="shareresult">Share cleanup results</string>
+    <string name="sharetext">I used ICleanExpert to help me clean up <xliff:g id="sharetextsize">%s</xliff:g> Garbage, you have to try it!</string>
+    <string name="sysapptitle">Sure to clean it?</string>
+    <string name="sysappmsg">Cleaning system process may affect the normal operation of the phone, sure to clean it?</string>
+    <string name="sure">Sure</string>
+    <string name="cancle">Cancel</string>
+    <string name="bigfilemsg">Large files are not necessarily useless files, please choose carefully to avoid accidental deletion.</string>
+    <string name="listitemtitle">(<xliff:g id="listitemtitlecount">%s</xliff:g> Total <xliff:g id="listitemtitlesize">%s</xliff:g>)</string>
+    <string name="listitemtitlenothing">No garbage</string>
+    <string name="thumbnails">Thumbnail Files(<xliff:g id="thucount">%s</xliff:g>)</string>
+    <string name="emptydir">Empty Folders(<xliff:g id="emptycount">%s</xliff:g>)</string>
+    <string name="tmpfile">Temporary Files(<xliff:g id="tmpcount">%s</xliff:g>)</string>
+    <string name="logfile">Log Files(<xliff:g id="logcount">%s</xliff:g>)</string>
+    <string name="emptyfile">Empty Files(<xliff:g id="empfilecount">%s</xliff:g>)</string>
+    <string name="cancleanspace">Can clean up space&#160;</string>
+    <string name="damage">Damaged</string>
+    <string name="installed">Installed</string>
+    <string name="apkupdate">Updatable</string>
+    <string name="notinstall">Not Installed</string>
+    <string name="ramrealease">Can release memory&#160;</string>
+    <string name="systemappram">(System App)</string>
+    <string name="bigfilesize">Size:</string>
+
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">清理大師</string>
+    <string name="main_title">手機清理</string>
+    <string name="total_suggestion">共有<xliff:g id="total_suggestion_size">%s</xliff:g>垃圾</string>
+    <string name="total_suggestion_small">(建議清理)</string>
+    <string name="total_clean">成功清理<xliff:g id="total_clean_size">%s</xliff:g>垃圾</string>
+    <string name="scanning">正在掃描：</string>
+    <string name="scanfinish">掃描完成</string>
+    <string name="titlecache">緩存掃描</string>
+    <string name="titleapk">安裝包掃描</string>
+    <string name="titleram">內存掃描</string>
+    <string name="titletrash">殘留文件掃描</string>
+    <string name="titlebig">大文件掃描</string>
+    <string name="stopscan">停止掃描</string>
+    <string name="total_find">共發現<xliff:g id="total_find_size">%s</xliff:g>垃圾可清理</string>
+    <string name="cleaning">正在清理：</string>
+    <string name="cleanfinish">清理完成</string>
+    <string name="cacheclean">緩存清理</string>
+    <string name="cleanresultitem">(已清理<xliff:g id="count">%s</xliff:g>項共<xliff:g id="size">%s</xliff:g>)</string>
+    <string name="apkclean">安裝包清理</string>
+    <string name="ramclean">內存加速</string>
+    <string name="trashclean">殘留文件</string>
+    <string name="bigclean">大文件</string>
+    <string name="onekeyclean">一鍵清理</string>
+    <string name="shareresult">分享給小夥伴們</string>
+    <string name="sharetext">我用清理专家幫我清理了<xliff:g id="sharetextsize">%s</xliff:g>垃圾，你也來試試吧！</string>
+    <string name="sysapptitle">確定要清理嗎？</string>
+    <string name="sysappmsg">清理系統進程可能會影響手機正常運行，確定要清理嗎？</string>
+    <string name="sure">確定</string>
+    <string name="cancle">取消</string>
+    <string name="bigfilemsg">大文件不一定都是無用的垃圾文件，請謹慎選擇，避免誤刪。</string>
+    <string name="listitemtitle">(<xliff:g id="listitemtitlecount">%s</xliff:g>項共<xliff:g id="listitemtitlesize">%s</xliff:g>)</string>
+    <string name="listitemtitlenothing">幹幹凈凈</string>
+    <string name="thumbnails">縮略圖緩存文件(<xliff:g id="thucount">%s</xliff:g>個)</string>
+    <string name="emptydir">空文件夾(<xliff:g id="emptycount">%s</xliff:g>個)</string>
+    <string name="tmpfile">臨時文件(<xliff:g id="tmpcount">%s</xliff:g>個)</string>
+    <string name="logfile">日誌文件(<xliff:g id="logcount">%s</xliff:g>個)</string>
+    <string name="emptyfile">空白文件(<xliff:g id="empfilecount">%s</xliff:g>個)</string>
+    <string name="cancleanspace">可清理空間</string>
+    <string name="damage">已損壞</string>
+    <string name="installed">已安裝</string>
+    <string name="apkupdate">可升級</string>
+    <string name="notinstall">未安裝</string>
+    <string name="ramrealease">可釋放內存</string>
+    <string name="systemappram">(系統應用)</string>
+    <string name="bigfilesize">大小:</string>
+
+</resources>

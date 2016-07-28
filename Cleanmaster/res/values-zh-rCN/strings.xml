@@ -46,5 +46,7 @@
     <string name="ramrealease">可释放内存</string>
     <string name="systemappram">(系统应用)</string>
     <string name="bigfilesize">大小:</string>
+    <string name="total">总共：</string>
+    <string name="free">可用：</string>
 
 </resources>

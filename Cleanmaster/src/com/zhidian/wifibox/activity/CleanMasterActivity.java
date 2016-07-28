@@ -42,6 +42,7 @@ import com.zhidian.wifibox.data.CleanMasterDataBean.BigFileBean;
 import com.zhidian.wifibox.data.CleanMasterDataBean.CacheBean;
 import com.zhidian.wifibox.data.CleanMasterDataBean.RAMBean;
 import com.zhidian.wifibox.data.CleanMasterDataBean.TrashBean;
+import com.zhidian.wifibox.util.AppUtils;
 import com.zhidian.wifibox.util.DrawUtil;
 import com.zhidian.wifibox.view.RotationView;
 import com.zhidian.wifibox.view.ScanView;
@@ -232,6 +233,14 @@ public class CleanMasterActivity extends Activity {
 
 								@Override
 								public void onSuccess(TAResponse response) {
+									TextView sdcard = (TextView) findViewById(R.id.sdcard);
+									sdcard.setText(getResources().getString(
+											R.string.total)
+											+ AppUtils.getSDAllSize()
+											+ "   "
+											+ getResources().getString(
+													R.string.free)
+											+ AppUtils.getSDFreeSize());
 									mCleanFrame.setVisibility(View.VISIBLE);
 									mCleanButton.setText(getResources()
 											.getString(R.string.shareresult));
@@ -743,6 +752,12 @@ public class CleanMasterActivity extends Activity {
 		intentFilter.addAction(Intent.ACTION_PACKAGE_CHANGED);
 		intentFilter.addDataScheme("package");
 		registerReceiver(mAppInstallListener, intentFilter);
+
+		TextView sdcard = (TextView) findViewById(R.id.sdcard);
+		sdcard.setText(getResources().getString(R.string.total)
+				+ AppUtils.getSDAllSize() + "   "
+				+ getResources().getString(R.string.free)
+				+ AppUtils.getSDFreeSize());
 	}
 
 	/**

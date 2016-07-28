@@ -24,6 +24,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Debug;
+import android.os.Environment;
+import android.os.StatFs;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -518,6 +520,47 @@ public class AppUtils {
 		sb.append(result);
 
 		return sb.toString();
+	}
+
+	// SD卡剩余空间大小
+	public static String getSDFreeSize() {
+		// 取得SD卡文件路径
+		File path = Environment.getExternalStorageDirectory();
+		StatFs sf = new StatFs(path.getPath());
+		// 获取单个数据块的大小(Byte)
+		long blockSize = sf.getBlockSize();
+		// 空闲的数据块的数量
+		long freeBlocks = sf.getAvailableBlocks();
+		// 返回SD卡空闲大小
+		long xxx = (long) ((freeBlocks * blockSize) / 1024.0 / 1024.0 + 0.5); // 单位MB
+		if (xxx >= 1024) {
+			double yyy = xxx / 1024.0;
+			yyy = (int) (yyy * 100 + 0.5);
+			yyy = yyy / 100.0;
+			return yyy + "GB";
+		} else {
+			return xxx + "MB";
+		}
+	}
+
+	// SD卡总容量
+	public static String getSDAllSize() {
+		// 取得SD卡文件路径
+		File path = Environment.getExternalStorageDirectory();
+		StatFs sf = new StatFs(path.getPath());
+		// 获取单个数据块的大小(Byte)
+		long blockSize = sf.getBlockSize();
+		// 获取所有数据块数
+		long allBlocks = sf.getBlockCount();
+		long xxx = (long) ((allBlocks * blockSize) / 1024.0 / 1024.0 + 0.5); // 单位MB
+		if (xxx >= 1024) {
+			double yyy = xxx / 1024.0;
+			yyy = (int) (yyy * 100 + 0.5);
+			yyy = yyy / 100.0;
+			return yyy + "GB";
+		} else {
+			return xxx + "MB";
+		}
 	}
 
 }

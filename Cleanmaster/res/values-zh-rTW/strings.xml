@@ -46,5 +46,7 @@
     <string name="ramrealease">可釋放內存</string>
     <string name="systemappram">(系統應用)</string>
     <string name="bigfilesize">大小:</string>
+    <string name="total">總共：</string>
+    <string name="free">可用：</string>
 
 </resources>

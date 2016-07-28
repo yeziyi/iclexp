@@ -46,5 +46,7 @@
     <string name="ramrealease">Can release memory&#160;</string>
     <string name="systemappram">(System App)</string>
     <string name="bigfilesize">Size:</string>
+    <string name="total">Total：</string>
+    <string name="free">Available：</string>
 
 </resources>

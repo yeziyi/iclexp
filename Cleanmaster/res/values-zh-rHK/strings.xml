@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">清理专家</string>
+    <string name="app_name">清理專家</string>
     <string name="main_title">手機清理</string>
     <string name="total_suggestion">共有<xliff:g id="total_suggestion_size">%s</xliff:g>垃圾</string>
     <string name="total_suggestion_small">(建議清理)</string>
@@ -23,14 +23,14 @@
     <string name="ramclean">內存加速</string>
     <string name="trashclean">殘留文件</string>
     <string name="bigclean">大文件</string>
-    <string name="onekeyclean">一鍵清理</string>
+    <string name="onekeyclean">壹鍵清理</string>
     <string name="shareresult">分享給小夥伴們</string>
-    <string name="sharetext">我用清理专家幫我清理了<xliff:g id="sharetextsize">%s</xliff:g>垃圾，你也來試試吧！</string>
+    <string name="sharetext">我用清理專家幫我清理了<xliff:g id="sharetextsize">%s</xliff:g>垃圾，妳也來試試吧！</string>
     <string name="sysapptitle">確定要清理嗎？</string>
     <string name="sysappmsg">清理系統進程可能會影響手機正常運行，確定要清理嗎？</string>
     <string name="sure">確定</string>
     <string name="cancle">取消</string>
-    <string name="bigfilemsg">大文件不一定都是無用的垃圾文件，請謹慎選擇，避免誤刪。</string>
+    <string name="bigfilemsg">大文件不壹定都是無用的垃圾文件，請謹慎選擇，避免誤刪。</string>
     <string name="listitemtitle">(<xliff:g id="listitemtitlecount">%s</xliff:g>項共<xliff:g id="listitemtitlesize">%s</xliff:g>)</string>
     <string name="listitemtitlenothing">幹幹凈凈</string>
     <string name="thumbnails">縮略圖緩存文件(<xliff:g id="thucount">%s</xliff:g>個)</string>

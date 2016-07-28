@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">ICleanExpert</string>
-    <string name="main_title">CleanMaster</string>
+    <string name="main_title">CleanExpert</string>
     <string name="total_suggestion">Total Garbage <xliff:g id="total_suggestion_size">%s</xliff:g></string>
     <string name="total_suggestion_small">(Recommended cleanup)</string>
     <string name="total_clean">Successfully cleaned <xliff:g id="total_clean_size">%s</xliff:g> Garbage</string>

@@ -212,44 +212,10 @@ public class AsyncImageManager {
 
 	}
 
-	/**
-	 * 功能简述:从视频加载图片的方法 功能详细描述: 注意:
-	 * 
-	 * @param imgPath
-	 *            图片所在路径
-	 * @param imgName
-	 *            图片名称
-	 * @param imgUrl
-	 *            图片URL
-	 * @param isCache
-	 *            是否添加到内存的缓存里面
-	 * @param width
-	 *            指定输出视频缩略图的宽度
-	 * @param height
-	 *            指定输出视频缩略图的高度
-	 * @param kind
-	 *            参照MediaStore.Images.Thumbnails类中的常量MINI_KIND和MICRO_KIND。
-	 *            其中，MINI_KIND: 512 x 384，MICRO_KIND: 96 x 96
-	 * @return 指定大小的视频缩略图
-	 */
-	public Bitmap loadImgFromVideo(String imgPath, String imgName,
-			String imgUrl, boolean isCache, int width, int height, int kind) {
+	public Bitmap loadImgFromVideo(String videoPath, int kind) {
 		Bitmap result = null;
 		try {
-			if (FileUtil.isSDCardAvaiable()) {
-				File file = new File(imgPath + imgName);
-				if (file.exists()) {
-					result = ThumbnailUtils.createVideoThumbnail(imgPath
-							+ imgName, kind);
-					if (width != 0 && height != 0) {
-						result = ThumbnailUtils.extractThumbnail(result, width,
-								height, ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
-					}
-					if (result != null && isCache) {
-						mImageCache.set(imgUrl, result);
-					}
-				}
-			}
+			result = ThumbnailUtils.createVideoThumbnail(videoPath, kind);
 		} catch (OutOfMemoryError ex) {
 			ex.printStackTrace();
 		} catch (Exception ex) {
@@ -415,31 +381,13 @@ public class AsyncImageManager {
 		return result;
 	}
 
-	/**
-	 * 功能简述: 加载视频图片，如果图片在内存里，则直接返回图片，否则异步从SD卡或者网络加载图片 功能详细描述: 注意:
-	 * 
-	 * @param imgPath
-	 *            图片保存的SD卡目录
-	 * @param imgName
-	 *            图片保存的名称
-	 * @param imgUrl
-	 *            从网络加载图片的URL
-	 * @param isCache
-	 *            是否缓存到内存
-	 * @param fillet
-	 *            是否加上圆角
-	 * @param callBack
-	 *            回调
-	 * @return
-	 */
-	public Bitmap loadVideoImage(final String imgPath, final String imgName,
-			final String imgUrl, final boolean isCache, final boolean fillet,
+	public Bitmap loadVideoImage(final String videoPath, final boolean isCache,
 			final AsyncImageLoadedCallBack callBack) {
-		if (imgUrl == null || imgUrl.equals("")) {
+		if (videoPath == null || videoPath.equals("")) {
 			return null;
 		}
 		Bitmap result = null;
-		result = loadImgFromMemery(imgUrl);
+		result = loadImgFromMemery(videoPath);
 		if (result == null) {
 			if (mThreadPoolManager == null || mThreadPoolManager.isShutdown()) {
 				Log.e("AsyncImageManager",
@@ -451,36 +399,17 @@ public class AsyncImageManager {
 				public void run() {
 					Bitmap b = null;
 					try {
-						b = loadImgFromVideo(imgPath, imgName, imgUrl, isCache,
-								0, 0, Thumbnails.MICRO_KIND);
-						if (b == null) {
-							b = loadImgFromNetwork(imgUrl);
-							if (b != null) {
-								if (fillet) {
-									b = DrawUtil.createMaskBitmap(
-											TAApplication.getApplication(), b);
-								}
-								if (b != null) {
-									if (FileUtil.isSDCardAvaiable()) {
-										FileUtil.saveBitmapToSDFile(b, imgPath
-												+ imgName,
-												Bitmap.CompressFormat.PNG);
-									}
-								}
-							}
-						}
+						b = loadImgFromVideo(videoPath, Thumbnails.MICRO_KIND);
 					} catch (OutOfMemoryError error) {
 						// 爆内存
 						error.printStackTrace();
 					}
-					if (b != null) {
-						if (isCache) {
-							mImageCache.set(imgUrl, b);
-						}
+					if (b != null && isCache) {
+						mImageCache.set(videoPath, b);
 					}
 					// 主线程显示图片
 					CallBackRunnable cbRunnable = new CallBackRunnable(b,
-							callBack, imgUrl);
+							callBack, videoPath);
 					mHandler.post(cbRunnable);
 
 				}

@@ -756,7 +756,26 @@ public class CleanMasterAdapter extends BaseExpandableListAdapter {
 				|| filepath.endsWith(".divx") || filepath.endsWith(".mpe")
 				|| filepath.endsWith(".mp4") || filepath.endsWith(".mkv")
 				|| filepath.endsWith(".vob") || filepath.endsWith(".swf")) {
-			icon.setImageResource(R.drawable.explorer_c_icon_video_p);
+			icon.setTag(filepath);
+			Bitmap bm = AsyncImageManager.getInstance().loadVideoImage(
+					filepath, true, new AsyncImageLoadedCallBack() {
+
+						@Override
+						public void imageLoaded(Bitmap imageBitmap,
+								String imgUrl) {
+							if (icon.getTag() != null
+									&& icon.getTag().equals(imgUrl)
+									&& imageBitmap != null) {
+								icon.setImageBitmap(imageBitmap);
+							}
+						}
+					});
+			if (bm != null) {
+				icon.setImageBitmap(bm);
+			} else {
+				// 默认
+				icon.setImageResource(R.drawable.explorer_c_icon_video_p);
+			}
 		} else if (filepath.endsWith(".wav") || filepath.endsWith(".aif")
 				|| filepath.endsWith(".au") || filepath.endsWith(".mp3")
 				|| filepath.endsWith(".ram") || filepath.endsWith(".acm")

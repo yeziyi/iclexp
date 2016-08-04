@@ -786,7 +786,26 @@ public class CleanMasterAdapter extends BaseExpandableListAdapter {
 		} else if (filepath.endsWith(".bmp") || filepath.endsWith(".png")
 				|| filepath.endsWith(".jpg") || filepath.endsWith(".jpeg")
 				|| filepath.endsWith(".gif")) {
-			icon.setImageResource(R.drawable.explorer_c_icon_image_p);
+			icon.setTag(filepath);
+			Bitmap bm = AsyncImageManager.getInstance().loadAlbumImage(
+					filepath, true, new AsyncImageLoadedCallBack() {
+
+						@Override
+						public void imageLoaded(Bitmap imageBitmap,
+								String imgUrl) {
+							if (icon.getTag() != null
+									&& icon.getTag().equals(imgUrl)
+									&& imageBitmap != null) {
+								icon.setImageBitmap(imageBitmap);
+							}
+						}
+					});
+			if (bm != null) {
+				icon.setImageBitmap(bm);
+			} else {
+				// 默认
+				icon.setImageResource(R.drawable.explorer_c_icon_image_p);
+			}
 		} else if (filepath.endsWith(".apk")) {
 			String pkgName = filepath + ".big";
 			icon.setTag(pkgName);

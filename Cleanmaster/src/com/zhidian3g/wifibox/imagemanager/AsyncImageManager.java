@@ -133,49 +133,26 @@ public class AsyncImageManager {
 		return result;
 	}
 
-	/**
-	 * 功能简述:从SD卡加载相册图片的方法 功能详细描述: 因为相册图片比较大，可能会有几M的情况，
-	 * 如果图片图片大于128kb，通过算法把图片压缩，否则不压缩 注意:必须传入图片size，否则会报NumberFormatException异常
-	 * 
-	 * @param imgPath
-	 *            图片所在路径
-	 * @param imgName
-	 *            图片名称
-	 * @param imgUrl
-	 *            图片URL
-	 * @param size
-	 *            图片大小
-	 * @param isCache
-	 *            是否添加到内存的缓存里面
-	 * @return
-	 */
-	public Bitmap loadImgFromSD2(String imgPath, String imgName, String imgUrl,
-			boolean isCache) {
+	public Bitmap loadImgFromSD2(String imgPath) {
 		Bitmap result = null;
-		String path = imgPath + imgName;
 		try {
-			if (FileUtil.isSDCardAvaiable()) {
-				File file = new File(path);
-				if (file.exists()) {
-					BitmapFactory.Options opt = new BitmapFactory.Options();
-					// 属性设置为true就可以让解析方法禁止为bitmap分配内存，
-					// 返回值也不再是一个Bitmap对象，而是 null。
-					// 虽然Bitmap是null了，但是BitmapFactory.Options的outWidth、outHeight和
-					// outMimeType属性都会被赋值。
-					opt.inJustDecodeBounds = true;
-					BitmapFactory.decodeFile(path, opt);
+			File file = new File(imgPath);
+			if (file.exists()) {
+				BitmapFactory.Options opt = new BitmapFactory.Options();
+				// 属性设置为true就可以让解析方法禁止为bitmap分配内存，
+				// 返回值也不再是一个Bitmap对象，而是 null。
+				// 虽然Bitmap是null了，但是BitmapFactory.Options的outWidth、outHeight和
+				// outMimeType属性都会被赋值。
+				opt.inJustDecodeBounds = true;
+				BitmapFactory.decodeFile(imgPath, opt);
 
-					int reqWidth = 150;
-					int reqHeight = 150;
-					opt.inSampleSize = calculateInSampleSize(opt, reqWidth,
-							reqHeight);
-					opt.inJustDecodeBounds = false;
-					// 使用获取到的inSampleSize值再次解析图片
-					result = BitmapFactory.decodeFile(path, opt);
-					if (result != null && isCache) {
-						mImageCache.set(imgUrl, result);
-					}
-				}
+				int reqWidth = 150;
+				int reqHeight = 150;
+				opt.inSampleSize = calculateInSampleSize(opt, reqWidth,
+						reqHeight);
+				opt.inJustDecodeBounds = false;
+				// 使用获取到的inSampleSize值再次解析图片
+				result = BitmapFactory.decodeFile(imgPath, opt);
 			}
 		} catch (OutOfMemoryError ex) {
 			ex.printStackTrace();
@@ -426,7 +403,7 @@ public class AsyncImageManager {
 	 *            图片保存的SD卡目录
 	 * @param imgName
 	 *            图片保存的名称
-	 * @param imgUrl
+	 * @param imgPath
 	 *            从网络加载图片的URL
 	 * @param isCache
 	 *            是否缓存到内存
@@ -436,14 +413,13 @@ public class AsyncImageManager {
 	 *            回调
 	 * @return
 	 */
-	public Bitmap loadAlbumImage(final String imgPath, final String imgName,
-			final String imgUrl, final boolean isCache,
+	public Bitmap loadAlbumImage(final String imgPath, final boolean isCache,
 			final AsyncImageLoadedCallBack callBack) {
-		if (imgUrl == null || imgUrl.equals("")) {
+		if (imgPath == null || imgPath.equals("")) {
 			return null;
 		}
 		Bitmap result = null;
-		result = loadImgFromMemery(imgUrl);
+		result = loadImgFromMemery(imgPath);
 		if (result == null) {
 			if (mThreadPoolManager == null || mThreadPoolManager.isShutdown()) {
 				Log.e("AsyncImageManager",
@@ -455,19 +431,17 @@ public class AsyncImageManager {
 				public void run() {
 					Bitmap b = null;
 					try {
-						b = loadImgFromSD2(imgPath, imgName, imgUrl, isCache);
+						b = loadImgFromSD2(imgPath);
 					} catch (OutOfMemoryError error) {
 						// 爆内存
 						error.printStackTrace();
 					}
-					if (b != null) {
-						if (isCache) {
-							mImageCache.set(imgUrl, b);
-						}
+					if (b != null && isCache) {
+						mImageCache.set(imgPath, b);
 					}
 					// 主线程显示图片
 					CallBackRunnable cbRunnable = new CallBackRunnable(b,
-							callBack, imgUrl);
+							callBack, imgPath);
 					mHandler.post(cbRunnable);
 
 				}
